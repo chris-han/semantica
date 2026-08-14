@@ -1245,13 +1245,23 @@ interface GraphWorkspaceProps {
   externalFocusNodeId?: string;
   externalFocusToken?: number;
   onDirtyChange?: (dirty: boolean) => void;
+  /** Generic host seam; domain semantics stay outside the upstream workspace. */
+  onSelectionChange?: (selection: { nodeId: string; edgeId: string }) => void;
 }
 
-export function GraphWorkspace({ externalFocusNodeId, externalFocusToken, onDirtyChange }: GraphWorkspaceProps = {}) {
+export function GraphWorkspace({
+  externalFocusNodeId,
+  externalFocusToken,
+  onDirtyChange,
+  onSelectionChange,
+}: GraphWorkspaceProps = {}) {
   const [selectedNodeId, setSelectedNodeId] = useState("");
   const [focusedNodeId, setFocusedNodeId] = useState("");
   const [lastGroupedSelectedNodeId, setLastGroupedSelectedNodeId] = useState("");
   const [selectedEdgeId, setSelectedEdgeId] = useState("");
+  useEffect(() => {
+    onSelectionChange?.({ nodeId: selectedNodeId, edgeId: selectedEdgeId });
+  }, [onSelectionChange, selectedEdgeId, selectedNodeId]);
   const [isLayoutRunning, setIsLayoutRunning] = useState(false);
   const [graphReady, setGraphReady] = useState(false);
   const [graphVersion, setGraphVersion] = useState(0);
