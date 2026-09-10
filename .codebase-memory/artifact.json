@@ -1,0 +1,11 @@
+{
+    "schema_version": 2,
+    "commit": "af4e2fc123002a4d0f8bfb5f08ff0b9e1dc807f8",
+    "indexed_at": "2026-09-10T01:38:20Z",
+    "project": "semantica",
+    "nodes": 21413,
+    "edges": 119299,
+    "original_size": 49152000,
+    "compressed_size": 6333618,
+    "compression_level": 9
+}
